@@ -1,0 +1,91 @@
+
+<br>
+<h3 class="text-center">Add New Employee</h3><br>
+<div class="container col-md-10 ">
+<div style="text-align: center; color: red;">{{message}}</div>	
+ <form #f="ngForm" (ngSubmit) = "onSubmit()" enctype="multipart/form-data">      
+    <div class="form-group row">
+        <label for="firstName" class="col-lg-2 col-form-label">First Name</label>
+        <div class="col-lg-10">
+          <input type="text" class="form-control"  id="firstName" placeholder="First Name" pattern="^[a-zA-Z\s]+$" [(ngModel)] = "employee.firstName" name="firstName" >
+        </div>
+    </div>
+	<br>
+    <div class="form-group row">
+        <label for="lastName" class="col-lg-2 col-form-label">Last Name</label>
+        <div class="col-lg-10">
+          <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Last Name" pattern="^[a-zA-Z\s]+$" [(ngModel)] = "employee.lastName">
+        </div>
+    </div><br>
+    <div class="form-group row">
+        <label for="emailId" class="col-lg-2 col-form-label">Email Id</label>
+        <div class="col-lg-10">
+          <input type="text" name="emailId" class="form-control" (focusout)="onFocusOutEvent($event)" id="emailId" placeholder="Email" title="Enter Valid Email" pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$" [(ngModel)] = "employee.emailId" required>
+        </div>
+    </div><br>
+	<div class="form-group row">
+	    <label for="mobile" class="col-sm-2 col-form-label">Mobile</label>
+	    <div class="col-lg-10">
+	      <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile"  pattern="^[0-9]{10}$" minlength="10" maxlength="10" [(ngModel)] = "employee.mobile" required>
+	    </div>
+	  </div><br>
+    <div class="form-group row">
+		<label class="col-lg-2"  for="state">State</label>    
+		<div class="col-lg-10" >
+		  <select class="form-control" id="state" name = "state" [(ngModel)]="employee.state" required>
+			<option value="MP" >MP</option>
+			<option value="UP">UP</option>
+			<option value="AP">AP</option>
+			<option value="HP">HP</option>
+			<option value="UK">UK</option>
+			<option value="Bihar">Bihar</option>
+			<option value="Punjab">Punjab</option>
+			<option value="HR">HR</option>
+			<option value="Goa">Goa</option>
+		  </select>
+		</div>
+	  </div><br>
+	  <fieldset class="form-group">
+	    <div class="row">
+	      <legend class="col-form-label col-sm-2 pt-0">Gender</legend>
+	      <div class="col-sm-10">
+	        <div class="form-check">
+	          <input class="form-check-input" type="radio" name="gender" id="gridRadios1" value="Male" [(ngModel)] = "employee.gender" required>
+	          <label class="form-check-label" for="gridRadios1">
+	            Male
+	          </label>
+	        </div>
+	        <div class="form-check">
+	          <input class="form-check-input" type="radio" name="gender" id="gridRadios2" value="Female" [(ngModel)] = "employee.gender" required>
+	          <label class="form-check-label" for="gridRadios2">
+	            Female
+	          </label>
+	        </div>
+	      </div>
+	    </div>
+	  </fieldset>
+	  <br>
+	  <div class="form-group row">
+	    <div class="col-sm-2">Skills</div>
+	    <div class="col-sm-10">
+	      <div *ngFor="let skill of skillSet" class="form-check">
+	        <input class="form-check-input" type="checkbox" id="" name="skill" [(ngModel)]="skill.isChecked" (change)="changeSelection()" >
+	        <label class="form-check-label" for="">
+	          {{skill.name}}
+	        </label>
+	      </div>	      
+	    </div>
+	  </div> <br>
+	  <div class="form-group row">
+		<div class="col-md-2">
+		   <label>Profile Image</label>
+		</div>
+		<div class="col-md-10">
+		  <input type="file" class="form-control" accept="image/png, image/jpeg" name="image" (change)="imageUpload($event)"  required>
+	    </div>
+	  </div>
+	  <br/>
+    <button [disabled]="!f.valid" class="btn btn-success" type="submit" style="margin: auto;display: block;">Add New Employee</button><br><br>  
+</form>
+</div>
+

@@ -1,0 +1,38 @@
+<h2 style="text-align: center; color: teal; margin-bottom: 14px;margin-top: 10px;">Employees List</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr class="text-center">            
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Id</th>
+            <th>Mobile</th>
+            <th>Gender</th>
+            <th>State</th>
+            <th>Skills</th>
+            <th>Actions</th>
+
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <tr *ngFor = "let employee of employees">            
+            <td>{{ employee.firstName }}</td>
+            <td>{{ employee.lastName }}</td>
+            <td>{{ employee.emailId }}</td>
+            <td>{{employee.mobile}}</td>
+            <td>{{ employee.gender }}</td>
+            <td>{{ employee.state }}</td>
+            <td>
+                <ul *ngFor= "let skill of employee.skills">
+                    <p>{{ skill.name }}</p>                
+                </ul>
+
+            <td>
+                <button (click) = "updateEmployee(employee.id)" class="btn btn-secondary">Update</button> &nbsp;
+                <button (click) = "deleteEmployee(employee.id)" class="btn btn-danger">Delete</button> &nbsp;
+                <button (click) = "disableEmployee(employee.id)" class="btn btn-danger">Disable</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
